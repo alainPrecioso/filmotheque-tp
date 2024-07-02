@@ -2,11 +2,17 @@ package fr.eni.tp.filmotheque.controller;
 
 import fr.eni.tp.filmotheque.bll.FilmService;
 import fr.eni.tp.filmotheque.bo.Film;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@Component
+@Controller
+@RequestMapping("/films")
 public class FilmControllerImpl implements FilmController {
     private FilmService filmService;
 
@@ -15,13 +21,17 @@ public class FilmControllerImpl implements FilmController {
     }
 
     @Override
-    public void afficherUnFilm(int i) {
-        System.out.println(filmService.consulterFilmParId(1).toString());
+    @PostMapping("details")
+    public String afficherUnFilm(@RequestParam("id") int id, Model model) {
+        Film film = filmService.consulterFilmParId(id);
+        model.addAttribute("film", film);
+        return "details";
     }
 
-    @Override
-    public void afficherFilms() {
-        filmService.consulterFilms().forEach(film -> System.out.println(film.toString()));
-
+    @GetMapping
+    public String afficherFilms(Model model) {
+        List<Film> films = filmService.consulterFilms();
+        model.addAttribute("films", films);
+        return "liste";
     }
 }

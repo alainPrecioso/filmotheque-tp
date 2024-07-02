@@ -1,7 +1,9 @@
 package fr.eni.tp.filmotheque.controller;
 
-public interface FilmController {
-    void afficherUnFilm(int i);
+import org.springframework.ui.Model;
 
-    void afficherFilms();
+public interface FilmController {
+    String afficherUnFilm(int i, Model model);
+
+    String afficherFilms(Model model);
 }

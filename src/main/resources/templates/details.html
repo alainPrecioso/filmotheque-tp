@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <title>Détails</title>
+</head>
+<body>
+<h2>Film Details</h2>
+<table>
+    <tr>
+        <th>Genre</th>
+        <td th:text="${film.genre.titre}"></td>
+    </tr>
+    <tr>
+        <th>Année</th>
+        <td th:text="${film.annee}"></td>
+    </tr>
+    <tr>
+        <th>Titre</th>
+        <td th:text="${film.titre}"></td>
+    </tr>
+    <tr>
+        <th>Réalisateur</th>
+        <td th:text="${film.realisateur.nom}"></td>
+    </tr>
+    <tr>
+        <th>Durée</th>
+        <td th:text="${film.duree}"></td>
+    </tr>
+    <tr>
+        <th>Acteurs</th>
+        <td>
+            <ul>
+                <li th:each="acteur : ${film.acteurs}" th:text="${acteur.nom}"></li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <th>Synopsis</th>
+        <td th:text="${film.synopsis}"></td>
+    </tr>
+</table>
+</body>
+</html>
