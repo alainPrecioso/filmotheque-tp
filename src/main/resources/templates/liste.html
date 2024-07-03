@@ -16,14 +16,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="film : ${films}">
-        <td th:text="${film.genre.titre}"></td>
-        <td th:text="${film.annee}"></td>
-        <td th:text="${film.titre}"></td>
-        <td th:text="${film.realisateur.nom}"></td>
+    <tr data-th-each="film : ${films}">
+        <td data-th-text="${film.genre.titre}"></td>
+        <td data-th-text="${film.annee}"></td>
+        <td data-th-text="${film.titre}"></td>
+        <td data-th-text="${film.realisateur.nom}"></td>
         <td>
-            <form th:action="@{/films/details}" method="post">
-                <input type="hidden" th:name="id" th:value="${film.id}" />
+            <form data-th-action="@{/films/details}" method="post">
+                <input type="hidden" data-th-name="id" data-th-value="${film.id}" />
                 <button type="submit">Détail</button>
             </form>
         </td>
