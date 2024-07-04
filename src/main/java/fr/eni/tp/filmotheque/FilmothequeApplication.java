@@ -1,9 +1,7 @@
 package fr.eni.tp.filmotheque;
 
-import fr.eni.tp.filmotheque.controller.FilmController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class FilmothequeApplication {
