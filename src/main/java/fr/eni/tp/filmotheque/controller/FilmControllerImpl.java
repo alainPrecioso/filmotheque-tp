@@ -4,10 +4,7 @@ import fr.eni.tp.filmotheque.bll.FilmService;
 import fr.eni.tp.filmotheque.bo.Film;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +20,20 @@ public class FilmControllerImpl implements FilmController {
     @Override
     @PostMapping("details")
     public String afficherUnFilm(@RequestParam("id") int id, Model model) {
+        Film film = filmService.consulterFilmParId(id);
+        model.addAttribute("film", film);
+        return "details";
+    }
+
+    @GetMapping("details")
+    public String afficherUnFilmGet(@RequestParam(name = "id", required = true) int id, Model model) {
+        Film film = filmService.consulterFilmParId(id);
+        model.addAttribute("film", film);
+        return "details";
+    }
+
+    @GetMapping("details/{id}")
+    public String afficherUnFilmUrl(@PathVariable("id") int id, Model model) {
         Film film = filmService.consulterFilmParId(id);
         model.addAttribute("film", film);
         return "details";
