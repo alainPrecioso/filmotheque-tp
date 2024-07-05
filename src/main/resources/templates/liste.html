@@ -1,37 +1,47 @@
 <!DOCTYPE html>
-<html lang="fr"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      data-th-replace="~{layouts/layout :: layout-filmotheque(
+			titrePage=~{:: title},
+			contenuPage=~{:: main},
+			ressource=~{:: #css})}">
 <head>
     <meta charset="UTF-8">
+    <th:block id="css">
+        <link rel="stylesheet" data-th-href="@{/css/tp-table.css}">
+    </th:block>
+
     <title>Films</title>
+
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>Genre</th>
-        <th>Année</th>
-        <th>Titre</th>
-        <th>Réalisateur</th>
-        <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr data-th-each="film : ${films}">
-        <td data-th-text="${film.genre.titre}"></td>
-        <td data-th-text="${film.annee}"></td>
-        <td data-th-text="${film.titre}"></td>
-        <td data-th-text="${film.realisateur.nom}"></td>
-        <td>
-            <form data-th-action="@{/films/details}" method="post">
-                <input type="hidden" data-th-name="id" data-th-value="${film.id}"/>
-                <button type="submit">Détails POST</button>
-            </form>
-            <a data-th-href="@{/films/details(id=${film.id})}">Détails param</a>
-            <a data-th-href="@{/films/details/{id}(id=${film.id})}" class="btn">Détails URL</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>Genre</th>
+            <th>Année</th>
+            <th>Titre</th>
+            <th>Réalisateur</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="film : ${films}">
+            <td data-th-text="${film.genre.titre}"></td>
+            <td data-th-text="${film.annee}"></td>
+            <td data-th-text="${film.titre}"></td>
+            <td data-th-text="${film.realisateur.prenom} + ' ' + ${film.realisateur.nom}"></td>
+            <td>
+                <form data-th-action="@{/films/details}" method="post">
+                    <input type="hidden" data-th-name="id" data-th-value="${film.id}"/>
+                    <button type="submit">Détails POST</button>
+                </form>
+                <a data-th-href="@{/films/details(id=${film.id})}">Détails param</a>
+                <a data-th-href="@{/films/details/{id}(id=${film.id})}" class="btn">Détails URL</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
 </body>
 </html>
