@@ -2,6 +2,7 @@ package fr.eni.tp.filmotheque.controller;
 
 import fr.eni.tp.filmotheque.bll.FilmService;
 import fr.eni.tp.filmotheque.bo.Film;
+import fr.eni.tp.filmotheque.bo.Genre;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/films")
+@SessionAttributes({"loggedMembre" })
 public class FilmController {
     private final FilmService filmService;
 
@@ -43,5 +45,15 @@ public class FilmController {
         List<Film> films = filmService.consulterFilms();
         model.addAttribute("films", films);
         return "liste";
+    }
+
+    @ModelAttribute("genres")
+    public List<Genre> chargerGenres() {
+        return filmService.consulterGenres();
+    }
+
+    @GetMapping("/creer")
+    public String creerFilm() {
+        return "creation";
     }
 }

@@ -5,11 +5,20 @@
 			<img data-th-src="@{/images/logoFilmotheque.png}" alt="logo du site">
 			Filmothèque
 		</a>
+		<th:block data-th-if="${loggedMembre != null && loggedMembre.id > 0}">
+			<span data-th-text="'['+ ${loggedMembre.prenom} +']'"></span>
+		</th:block>
 	</h1>
 	<nav>
 		<ul>
 			<li>
 				<a href="/films">Films</a>
+			</li>
+			<li>
+				<a href="/films/creer">Créer</a>
+			</li>
+			<li>
+				<a href="/membres">Contextes</a>
 			</li>
 		</ul>
 	</nav>

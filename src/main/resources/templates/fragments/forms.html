@@ -3,45 +3,45 @@
 	<ul class="flex-outer">
 		<li>
 			<label for="inputGenre">Genre : </label>
-			<span th:if="${#strings.isEmpty(action)}" th:text="${film.genre.titre}"></span>
-			<input th:if="${action == '/modifier'}" type="text" id="inputGenre" th:value="${film.genre.titre}" />
+			<span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.genre.titre}"></span>
+			<input data-th-if="${action == '/modifier'}" type="text" id="inputGenre" data-th-value="${film.genre.titre}" />
 		</li>
 		<li>
 			<label for="inputYear">Année : </label>
-			<span th:if="${#strings.isEmpty(action)}" th:text="${film.annee}"></span>
-			<input th:if="${action == '/modifier'}" type="text" id="inputYear" th:value="${film.annee}" />
+			<span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.annee}"></span>
+			<input data-th-if="${action == '/modifier'}" type="text" id="inputYear" data-th-value="${film.annee}" />
 		</li>
 		<li>
 			<label for="inputTitle">Titre : </label>
-			<span th:if="${#strings.isEmpty(action)}" th:text="${film.titre}"></span>
-			<input th:if="${action == '/modifier'}" type="text" id="inputTitle" th:value="${film.titre}" />
+			<span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.titre}"></span>
+			<input data-th-if="${action == '/modifier'}" type="text" id="inputTitle" data-th-value="${film.titre}" />
 		</li>
 		<li>
 			<label for="inputDirector">Réalisateur : </label>
-			<span th:if="${#strings.isEmpty(action)}" th:text="${film.realisateur.prenom + ' ' + film.realisateur.nom}"></span>
-			<input th:if="${action == '/modifier'}" type="text" id="inputDirector" th:value="${film.realisateur.prenom + ' ' + film.realisateur.nom}" />
+			<span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.realisateur.prenom + ' ' + film.realisateur.nom}"></span>
+			<input data-th-if="${action == '/modifier'}" type="text" id="inputDirector" data-th-value="${film.realisateur.prenom + ' ' + film.realisateur.nom}" />
 		</li>
 		<li>
 			<label for="inputDuration">Durée : </label>
-			<span th:if="${#strings.isEmpty(action)}" th:text="${film.duree}"></span>
-			<input th:if="${action == '/modifier'}" type="number" id="inputDuration" th:value="${film.duree}" />
+			<span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.duree}"></span>
+			<input data-th-if="${action == '/modifier'}" type="number" id="inputDuration" data-th-value="${film.duree}" />
 		</li>
-		<li th:if="${not #lists.isEmpty(film.acteurs)}">
+		<li data-th-if="${not #lists.isEmpty(film.acteurs)}">
 			<label for="selectActors">Acteur(s) : </label>
-			<span th:if="${#strings.isEmpty(action)}">
-                <span th:each="acteur, iterStat : ${film.acteurs}">
-       				<span th:text="'- ' + ${acteur.prenom + ' ' + acteur.nom}"></span>
-					<span th:unless="${iterStat.last}"><br /></span>
+			<span data-th-if="${#strings.isEmpty(action)}">
+                <span data-th-each="acteur, iterStat : ${film.acteurs}">
+       				<span data-th-text="'- ' + ${acteur.prenom + ' ' + acteur.nom}"></span>
+					<span data-th-unless="${iterStat.last}"><br /></span>
     			</span>
             </span>
-			<select th:if="${action == '/modifier'}" id="selectActors" multiple="multiple">
-				<option th:each="acteur : ${film.acteurs}" th:text="'- ' + acteur.prenom + ' ' + acteur.nom"></option>
+			<select data-th-if="${action == '/modifier'}" id="selectActors" multiple="multiple">
+				<option data-th-each="acteur : ${film.acteurs}" data-th-text="'- ' + ${acteur.prenom} + ' ' + ${acteur.nom}"></option>
 			</select>
 		</li>
 		<li>
 			<label for="taSynopsis">Synopsis : </label>
-			<span th:if="${#strings.isEmpty(action)}" th:text="${film.synopsis}"></span>
-			<textarea th:if="${action == '/modifier'}" id="taSynopsis" th:text="${film.synopsis}" rows="3"></textarea>
+			<span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.synopsis}"></span>
+			<textarea data-th-if="${action == '/modifier'}" id="taSynopsis" data-th-text="${film.synopsis}" rows="3"></textarea>
 		</li>
 	</ul>
 </form>

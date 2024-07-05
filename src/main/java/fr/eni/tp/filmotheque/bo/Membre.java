@@ -20,6 +20,10 @@ public class Membre extends Personne {
         this.pseudo = mail;
     }
 
+    public Membre() {
+
+    }
+
     public String getPseudo() {
         return pseudo;
     }
