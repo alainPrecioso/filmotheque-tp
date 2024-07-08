@@ -12,18 +12,7 @@
 </head>
 <body>
 	<main>
-		<form>
-			<h1>Création d'un film [En cours de construction]</h1>
-			<ul class="flex-outer">
-				<li>
-				<label for="inputGenre">Genre : </label> 
-				<select id="inputGenre">
-					<option data-th-each="genre : ${genres}"
-						data-th-text="${genre.titre}" data-th-value="${genre.id}"></option>
-				</select>
-				</li>
-			</ul>
-		</form>
+			<div data-th-replace="~{fragments/forms :: film-form('/films/creer')}"></div>
 	</main>
 </body>
 </html>

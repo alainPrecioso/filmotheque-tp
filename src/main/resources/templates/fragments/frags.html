@@ -14,7 +14,7 @@
 			<li>
 				<a href="/films">Films</a>
 			</li>
-			<li>
+			<li data-th-if="${loggedMembre != null && loggedMembre.id > 0 && loggedMembre.admin == true}">
 				<a href="/films/creer">Créer</a>
 			</li>
 			<li>

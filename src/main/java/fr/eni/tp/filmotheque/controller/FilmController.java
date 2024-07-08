@@ -1,10 +1,7 @@
 package fr.eni.tp.filmotheque.controller;
 
 import fr.eni.tp.filmotheque.bll.FilmService;
-import fr.eni.tp.filmotheque.bo.Avis;
-import fr.eni.tp.filmotheque.bo.Film;
-import fr.eni.tp.filmotheque.bo.Genre;
-import fr.eni.tp.filmotheque.bo.Membre;
+import fr.eni.tp.filmotheque.bo.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -83,7 +80,26 @@ public class FilmController {
     }
 
     @GetMapping("/creer")
-    public String creerFilm() {
-        return "creation";
+    public String creerFilmView(@ModelAttribute("loggedMembre") Optional<Membre> loggedMembre,
+                                Model model) {
+        if (loggedMembre.isPresent() && loggedMembre.get().getId() >= 1) {
+            Film film = new Film();
+            film.setGenre(new Genre());
+            film.setRealisateur(new Participant());
+            model.addAttribute("genre", new Genre());
+            model.addAttribute("film", film);
+            return "creation";
+        }
+        return "redirect:/films";
+    }
+
+    @PostMapping("/creer")
+    public String creerFilm(@ModelAttribute("loggedMembre") Optional<Membre> loggedMembre,
+                            @ModelAttribute("film") Film film) {
+        if (loggedMembre.isPresent() && loggedMembre.get().getId() >= 1) {
+            film.setGenre(filmService.consulterGenreParId(film.getGenre().getId()));
+            filmService.creerFilm(film);
+        }
+        return "redirect:/films";
     }
 }
