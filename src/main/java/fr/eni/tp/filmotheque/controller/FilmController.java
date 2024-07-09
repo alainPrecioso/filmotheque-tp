@@ -2,8 +2,10 @@ package fr.eni.tp.filmotheque.controller;
 
 import fr.eni.tp.filmotheque.bll.FilmService;
 import fr.eni.tp.filmotheque.bo.*;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -95,8 +97,13 @@ public class FilmController {
 
     @PostMapping("/creer")
     public String creerFilm(@ModelAttribute("loggedMembre") Optional<Membre> loggedMembre,
-                            @ModelAttribute("film") Film film) {
+                            @Valid @ModelAttribute("film") Film film,
+                            BindingResult bindingResult
+                            ) {
         if (loggedMembre.isPresent() && loggedMembre.get().getId() >= 1) {
+            if (bindingResult.hasErrors()) {
+                return "creation";
+            }
             film.setGenre(filmService.consulterGenreParId(film.getGenre().getId()));
             filmService.creerFilm(film);
         }
