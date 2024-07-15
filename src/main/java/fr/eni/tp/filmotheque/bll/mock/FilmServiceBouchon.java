@@ -13,7 +13,7 @@ import fr.eni.tp.filmotheque.bo.Genre;
 import fr.eni.tp.filmotheque.bo.Membre;
 import fr.eni.tp.filmotheque.bo.Participant;
 
-@Service
+//@Service
 public class FilmServiceBouchon implements FilmService {
 	// Attributs statiques pour gérer les valeurs à afficher et simuler les données
 	// en base
