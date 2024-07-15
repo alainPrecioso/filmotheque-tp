@@ -49,6 +49,11 @@ public class Film implements Serializable {
 
     }
 
+    public Film(long id, String titre, int annee, int duree, String synopsis) {
+        this(id, titre, annee, duree, synopsis, null, new ArrayList<>(), null, new ArrayList<>());
+
+    }
+
     public long getId() {
         return id;
     }
