@@ -14,11 +14,11 @@
 </head>
 <body>
 <main>
-    <th:block data-th-if="${loggedMembre == null || loggedMembre.id == 0 || loggedMembre.admin == false}">
-        <div data-th-replace="~{fragments/forms :: film-form('')}"></div>
+    <th:block data-th-unless="${loggedMembre != null && loggedMembre.admin == true}">
+        <div data-th-replace="~{fragments/forms :: film-form('Détails', ~{})}"></div>
     </th:block>
-    <th:block data-th-if="${loggedMembre != null && loggedMembre.id > 0 && loggedMembre.admin == true}">
-        <div data-th-replace="~{fragments/forms :: film-form('/modifier')}"></div>
+    <th:block data-th-if="${loggedMembre != null && loggedMembre.admin == true}">
+        <div data-th-replace="~{fragments/forms :: film-form('Modifier','/modifier')}"></div>
     </th:block>
 </main>
 </body>

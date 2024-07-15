@@ -1,5 +1,5 @@
-<form xmlns:th="http://www.thymeleaf.org" data-th-fragment="film-form(action)" data-th-action="@{${action}}" method="post" data-th-object="${film}">
-	<h1>Détail du film</h1>
+<form xmlns:th="http://www.thymeleaf.org" data-th-fragment="film-form(titre, action)" data-th-action="@{${action}}" method="post" data-th-object="${film}">
+	<h1 data-th-text="${titre}"></h1>
 	<th:block data-th-if="${!#strings.isEmpty(action)}">
 		<div data-th-replace="~{fragments/errors/fragment-errors :: frag-errors}"></div>
 	</th:block>
