@@ -27,12 +27,23 @@ public class FilmServiceImpl implements FilmService {
 
     @Override
     public List<Film> consulterFilms() {
-        return filmDAO.findAll();
+        List<Film> films = filmDAO.findAll();
+        films.forEach(this::chargerGenreRealisateurEtActeursFilm);
+        return films;
     }
 
     @Override
     public Film consulterFilmParId(long id) {
-        return filmDAO.read(id);
+        Film film = filmDAO.read(id);
+        chargerGenreRealisateurEtActeursFilm(film);
+        return film;
+    }
+
+    @Override
+    public void chargerGenreRealisateurEtActeursFilm(Film film) {
+        film.setActeurs(participantDAO.findActeurs(film.getId()));
+        film.setRealisateur(participantDAO.read(film.getRealisateur().getId()));
+        film.setGenre(genreDAO.read(film.getRealisateur().getId()));
     }
 
     @Override

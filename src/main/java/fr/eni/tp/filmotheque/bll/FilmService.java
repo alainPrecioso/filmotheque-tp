@@ -12,6 +12,8 @@ public interface FilmService {
 
     Film consulterFilmParId(long id);
 
+    void chargerGenreRealisateurEtActeursFilm(Film film);
+
     List<Genre> consulterGenres();
 
     List<Participant> consulterParticipants();

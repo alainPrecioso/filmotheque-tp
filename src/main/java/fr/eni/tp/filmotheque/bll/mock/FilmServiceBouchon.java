@@ -46,6 +46,11 @@ public class FilmServiceBouchon implements FilmService {
 	}
 
 	@Override
+	public void chargerGenreRealisateurEtActeursFilm(Film film) {
+
+	}
+
+	@Override
 	public List<Genre> consulterGenres() {
 		return lstGenres;
 	}
