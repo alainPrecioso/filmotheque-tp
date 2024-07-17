@@ -1,90 +1,102 @@
-<form xmlns:th="http://www.thymeleaf.org" data-th-fragment="film-form(titre, action)" data-th-action="@{${action}}" method="post" data-th-object="${film}">
-	<h1 data-th-text="${titre}"></h1>
-	<th:block data-th-if="${!#strings.isEmpty(action)}">
-		<div data-th-replace="~{fragments/errors/fragment-errors :: frag-errors}"></div>
-	</th:block>
-	<ul class="flex-outer">
-		<li>
-			<label for="inputGenre">Genre : </label>
-			<span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.genre.titre}"></span>
-			<input data-th-if="${action == '/modifier'}" type="text" id="inputGenre" data-th-value="${film.genre.titre}" />
-			<select data-th-if="${action == '/films/creer'}" id="inputGenre" data-th-field="*{genre.id}">
-				<option data-th-each="genre : ${genres}"
-						data-th-text="${genre.titre}" data-th-value="${genre.id}"></option>
-			</select>
-		</li>
-		<li>
-			<label for="inputYear">Année : </label>
-			<span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.annee}"></span>
-			<input data-th-if="${action == '/modifier'}" type="text" id="inputYear" data-th-value="${film.annee}" />
-			<input data-th-if="${action == '/films/creer'}" type="text" id="inputYear" data-th-field="*{annee}" required />
-			<th:block data-th-if="${!#strings.isEmpty(action)}">
-				<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('annee')}"></div>
-			</th:block>
-		</li>
-		<li>
-			<label for="inputTitle">Titre : </label>
-			<span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.titre}"></span>
-			<input data-th-if="${action == '/modifier'}" type="text" id="inputTitle" data-th-value="${film.titre}" />
-			<input data-th-if="${action == '/films/creer'}" type="text" id="inputTitle" data-th-field="*{titre}" required />
-			<th:block data-th-if="${!#strings.isEmpty(action)}">
-				<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('titre')}"></div>
-			</th:block>
-		</li>
-		<li>
-			<label for="inputDirector">Réalisateur : </label>
-			<span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.realisateur.prenom + ' ' + film.realisateur.nom}"></span>
-			<input data-th-if="${action == '/modifier'}" type="text" id="inputDirector" data-th-value="${film.realisateur.prenom + ' ' + film.realisateur.nom}" />
-			<ul data-th-if="${action == '/films/creer'}" id="inputDirector">
-				<li>
-					<label for="inputPrénom">Prénom : </label>
-					<input type="text" id="inputPrénom" data-th-field="*{realisateur.prenom}" required />
-				</li>
-				<li>
-					<label for="inputNom">Nom : </label>
-					<input type="text" id="inputNom" data-th-field="*{realisateur.nom}" required />
-				</li>
-			</ul>
-		</li>
-		<li>
-			<label for="inputDuration">Durée : </label>
-			<span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.duree}"></span>
-			<input data-th-if="${action == '/modifier'}" type="number" id="inputDuration" data-th-value="${film.duree}" />
-			<input data-th-if="${action == '/films/creer'}" type="number" id="inputDuration" data-th-field="*{duree}" required />
-			<th:block data-th-if="${!#strings.isEmpty(action)}">
-				<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('duree')}"></div>
-			</th:block>
-		</li>
-		<li data-th-if="${not #lists.isEmpty(film.acteurs)}">
-			<label for="selectActors">Acteur(s) : </label>
-			<span data-th-if="${#strings.isEmpty(action)}">
+<form xmlns:th="http://www.thymeleaf.org" data-th-fragment="film-form(titre, action)" data-th-action="@{${action}}"
+      method="post" data-th-object="${film}">
+    <h1 data-th-text="${titre}"></h1>
+    <th:block data-th-if="${!#strings.isEmpty(action)}">
+        <div data-th-replace="~{fragments/errors/fragment-errors :: frag-errors}"></div>
+    </th:block>
+    <ul class="flex-outer">
+        <li>
+            <label for="inputGenre">Genre : </label>
+            <span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.genre.titre}"></span>
+            <input data-th-if="${action == '/modifier'}" type="text" id="inputGenre"
+                   data-th-value="${film.genre.titre}"/>
+            <select data-th-if="${action == '/films/creer'}" id="inputGenre" data-th-field="*{genre.id}">
+                <option data-th-each="genre : ${genres}"
+                        data-th-text="${genre.titre}" data-th-value="${genre.id}"></option>
+            </select>
+        </li>
+        <li>
+            <label for="inputYear">Année : </label>
+            <span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.annee}"></span>
+            <input data-th-if="${action == '/modifier'}" type="text" id="inputYear" data-th-value="${film.annee}"/>
+            <input data-th-if="${action == '/films/creer'}" type="text" id="inputYear" data-th-field="*{annee}"
+                   required/>
+            <th:block data-th-if="${!#strings.isEmpty(action)}">
+                <div data-th-replace="~{fragments/errors/fragment-error :: frag-error('annee')}"></div>
+            </th:block>
+        </li>
+        <li>
+            <label for="inputTitle">Titre : </label>
+            <span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.titre}"></span>
+            <input data-th-if="${action == '/modifier'}" type="text" id="inputTitle" data-th-value="${film.titre}"/>
+            <input data-th-if="${action == '/films/creer'}" type="text" id="inputTitle" data-th-field="*{titre}"
+                   required/>
+            <th:block data-th-if="${!#strings.isEmpty(action)}">
+                <div data-th-replace="~{fragments/errors/fragment-error :: frag-error('titre')}"></div>
+            </th:block>
+        </li>
+        <li>
+            <label for="inputDirector">Réalisateur : </label>
+            <span data-th-if="${#strings.isEmpty(action)}"
+                  data-th-text="${film.realisateur.prenom + ' ' + film.realisateur.nom}"></span>
+            <input data-th-if="${action == '/modifier'}" type="text" id="inputDirector"
+                   data-th-value="${film.realisateur.prenom + ' ' + film.realisateur.nom}"/>
+            <ul data-th-if="${action == '/films/creer'}" id="inputDirector">
+                <li>
+                    <label for="inputPrénom">Prénom : </label>
+                    <input type="text" id="inputPrénom" data-th-field="*{realisateur.prenom}" required/>
+                </li>
+                <li>
+                    <label for="inputNom">Nom : </label>
+                    <input type="text" id="inputNom" data-th-field="*{realisateur.nom}" required/>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <label for="inputDuration">Durée : </label>
+            <span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.duree}"></span>
+            <input data-th-if="${action == '/modifier'}" type="number" id="inputDuration"
+                   data-th-value="${film.duree}"/>
+            <input data-th-if="${action == '/films/creer'}" type="number" id="inputDuration" data-th-field="*{duree}"
+                   required/>
+            <th:block data-th-if="${!#strings.isEmpty(action)}">
+                <div data-th-replace="~{fragments/errors/fragment-error :: frag-error('duree')}"></div>
+            </th:block>
+        </li>
+        <li data-th-if="${not #lists.isEmpty(film.acteurs)}">
+            <label for="selectActors">Acteur(s) : </label>
+            <span data-th-if="${#strings.isEmpty(action)}">
                 <span data-th-each="acteur, iterStat : ${film.acteurs}">
        				<span data-th-text="'- ' + ${acteur.prenom + ' ' + acteur.nom}"></span>
-					<span data-th-unless="${iterStat.last}"><br /></span>
+					<span data-th-unless="${iterStat.last}"><br/></span>
     			</span>
             </span>
-			<select data-th-if="${action == '/modifier'}" id="selectActors" multiple="multiple">
-				<option data-th-each="acteur : ${film.acteurs}" data-th-text="'- ' + ${acteur.prenom} + ' ' + ${acteur.nom}"></option>
-			</select>
-			<select data-th-if="${action == '/films/creer'}" id="selectActors" multiple="multiple">
-<!--				<option data-th-each="acteur : ${film.acteurs}" data-th-text="'- ' + ${acteur.prenom} + ' ' + ${acteur.nom}"></option>-->
-			</select>
-		</li>
-		<li>
-			<label for="taSynopsis">Synopsis : </label>
-			<span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.synopsis}"></span>
-			<textarea data-th-if="${action == '/modifier'}" id="taSynopsis" data-th-text="${film.synopsis}" rows="3"></textarea>
-			<textarea data-th-if="${action == '/films/creer'}" id="taSynopsis" data-th-field="*{synopsis}" required></textarea>
-			<th:block data-th-if="${!#strings.isEmpty(action)}">
-				<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('synopsis')}"></div>
-			</th:block>
-		</li>
-		<li data-th-if="${not #lists.isEmpty(film.avis)}">
-			<label for="tableComments">Commentaire(s) :</label>
-			<ul>
-				<li id="tableComments" data-th-each="avis : ${film.avis}" data-th-text="${avis.commentaire + '[' + avis.note + '] - (' + avis.membre.prenom + ')'}"></li>
-			</ul>
-		</li>
-	</ul>
-	<button data-th-if="${action == '/films/creer'}" type="submit">Enregistrer</button>
+            <select data-th-if="${action == '/modifier'}" id="selectActors" multiple="multiple">
+                <option data-th-each="acteur : ${film.acteurs}"
+                        data-th-text="'- ' + ${acteur.prenom} + ' ' + ${acteur.nom}"></option>
+            </select>
+            <select data-th-if="${action == '/films/creer'}" id="selectActors" multiple="multiple">
+                <!--				<option data-th-each="acteur : ${film.acteurs}" data-th-text="'- ' + ${acteur.prenom} + ' ' + ${acteur.nom}"></option>-->
+            </select>
+        </li>
+        <li>
+            <label for="taSynopsis">Synopsis : </label>
+            <span data-th-if="${#strings.isEmpty(action)}" data-th-text="${film.synopsis}"></span>
+            <textarea data-th-if="${action == '/modifier'}" id="taSynopsis" data-th-text="${film.synopsis}"
+                      rows="3"></textarea>
+            <textarea data-th-if="${action == '/films/creer'}" id="taSynopsis" data-th-field="*{synopsis}"
+                      required></textarea>
+            <th:block data-th-if="${!#strings.isEmpty(action)}">
+                <div data-th-replace="~{fragments/errors/fragment-error :: frag-error('synopsis')}"></div>
+            </th:block>
+        </li>
+        <li data-th-if="${not #lists.isEmpty(film.avis)}">
+            <label for="tableComments">Commentaire(s) :</label>
+            <ul>
+                <li id="tableComments" data-th-each="avis : ${film.avis}"
+                    data-th-text="${avis.commentaire + '[' + avis.note + '] - (' + avis.membre.prenom + ')'}"></li>
+            </ul>
+        </li>
+    </ul>
+    <button data-th-if="${action == '/films/creer'}" type="submit">Enregistrer</button>
 </form>

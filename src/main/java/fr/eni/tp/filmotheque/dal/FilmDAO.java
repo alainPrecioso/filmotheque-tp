@@ -12,5 +12,5 @@ public interface FilmDAO {
 
     List<Film> findAll();
 
-    String findTitre (long id);
+    String findTitre(long id);
 }

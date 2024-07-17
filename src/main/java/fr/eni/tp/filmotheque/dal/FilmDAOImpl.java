@@ -18,13 +18,13 @@ import java.util.List;
 public class FilmDAOImpl implements FilmDAO {
 
     private static final String FIND_BY_ID = """
-        SELECT id, titre, annee, duree, synopsis, id_realisateur, id_genre FROM film WHERE id = :id
-    """;
+                SELECT id, titre, annee, duree, synopsis, id_realisateur, id_genre FROM film WHERE id = :id
+            """;
     private static final String FIND_ALL = "SELECT id, titre, annee, duree, synopsis, id_realisateur, id_genre FROM film";
     private static final String INSERT = """
-        INSERT INTO film ( titre, annee, duree, synopsis, id_realisateur, id_genre )
-        VALUES (:titre, :annee, :duree, :synopsis, :idRealisateur, :idGenre)
-        """;
+            INSERT INTO film ( titre, annee, duree, synopsis, id_realisateur, id_genre )
+            VALUES (:titre, :annee, :duree, :synopsis, :idRealisateur, :idGenre)
+            """;
     private static final String FIND_TITRE = "SELECT titre FROM Film WHERE id = :id";
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -34,7 +34,7 @@ public class FilmDAOImpl implements FilmDAO {
 
     @Override
     public void create(Film film) {
-        KeyHolder keyHolder= new GeneratedKeyHolder();
+        KeyHolder keyHolder = new GeneratedKeyHolder();
 
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("titre", film.getTitre());
@@ -60,7 +60,7 @@ public class FilmDAOImpl implements FilmDAO {
 
     @Override
     public List<Film> findAll() {
-        return jdbcTemplate.query(FIND_ALL,  new FilmRowMapper());
+        return jdbcTemplate.query(FIND_ALL, new FilmRowMapper());
     }
 
     @Override

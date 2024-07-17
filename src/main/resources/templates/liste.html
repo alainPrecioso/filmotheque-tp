@@ -38,7 +38,8 @@
                 </form>
                 <a data-th-href="@{/films/details(id=${film.id})}">Détails param</a>
                 <a data-th-href="@{/films/{id}(id=${film.id})}" class="btn">Détails URL</a>
-                <a data-th-if="${loggedMembre != null && loggedMembre.id > 0}" data-th-href="@{/films/{id}/avis(id=${film.id})}">Avis</a>
+                <a data-th-if="${loggedMembre != null && loggedMembre.id > 0}"
+                   data-th-href="@{/films/{id}/avis(id=${film.id})}">Avis</a>
             </td>
         </tr>
         </tbody>

@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  data-th-replace="~{layouts/layout :: layout-filmotheque(
+      data-th-replace="~{layouts/layout :: layout-filmotheque(
 						titrePage=~{:: title},
 						contenuPage=~{:: main},
 						ressource=~{:: #css})}">
 <head>
-	<title>Avis</title>
-	<th:block id="ressource">
-		<link rel="stylesheet" data-th-href="@{/css/tp-form.css}">
-	</th:block>
+    <title>Avis</title>
+    <th:block id="ressource">
+        <link rel="stylesheet" data-th-href="@{/css/tp-form.css}">
+    </th:block>
 </head>
 <body>
-	<main>
-		<form data-th-action="@{/films/{id}/avis(id=${film.id})}" method="post" data-th-object="${avis}">
-			<h1 data-th-text="${'Ajouter un avis au film ' + film.titre }"></h1>
-			<ul class="flex-outer">
-				<li>
-					<label for="inputNote">Note :</label>
-					<input type="number" min="0" max="5" id="inputNote" data-th-field="*{note}" required>
-				</li>
-				<li>
-					<label for="inputComment">Commentaire :</label>
-					<textarea id="inputComment" data-th-field="*{commentaire}" required maxlength="250" rows="3">
+<main>
+    <form data-th-action="@{/films/{id}/avis(id=${film.id})}" method="post" data-th-object="${avis}">
+        <h1 data-th-text="${'Ajouter un avis au film ' + film.titre }"></h1>
+        <ul class="flex-outer">
+            <li>
+                <label for="inputNote">Note :</label>
+                <input type="number" min="0" max="5" id="inputNote" data-th-field="*{note}" required>
+            </li>
+            <li>
+                <label for="inputComment">Commentaire :</label>
+                <textarea id="inputComment" data-th-field="*{commentaire}" required maxlength="250" rows="3">
 					</textarea>
-				</li>
-				<li>
-					<button type="submit">Enregistrer</button>
-				</li>
-			</ul>
-		</form>
-	</main>
+            </li>
+            <li>
+                <button type="submit">Enregistrer</button>
+            </li>
+        </ul>
+    </form>
+</main>
 </body>
 </html>

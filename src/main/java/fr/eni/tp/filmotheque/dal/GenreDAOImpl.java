@@ -28,6 +28,6 @@ public class GenreDAOImpl implements GenreDAO {
 
     @Override
     public List<Genre> findAll() {
-        return jdbcTemplate.query(FIND_ALL,  new BeanPropertyRowMapper<>(Genre.class));
+        return jdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(Genre.class));
     }
 }

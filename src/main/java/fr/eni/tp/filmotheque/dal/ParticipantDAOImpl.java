@@ -19,9 +19,9 @@ public class ParticipantDAOImpl implements ParticipantDAO {
     private static final String FIND_BY_ID = "SELECT id, nom, prenom FROM participant where id = :id";
     private static final String FIND_ALL = "SELECT id, nom, prenom FROM participant";
     private static final String INSERT = """
-        INSERT INTO acteurs( id_film, id_participant)
-        VALUES (:idFilm, :idParticipant)
-        """;
+            INSERT INTO acteurs( id_film, id_participant)
+            VALUES (:idFilm, :idParticipant)
+            """;
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     public ParticipantDAOImpl(NamedParameterJdbcTemplate jdbcTemplate) {
@@ -60,7 +60,7 @@ public class ParticipantDAOImpl implements ParticipantDAO {
 
     @Override
     public void createActeur(long idParticipant, long idFilm) {
-        KeyHolder keyHolder= new GeneratedKeyHolder();
+        KeyHolder keyHolder = new GeneratedKeyHolder();
 
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("id_film", idFilm);

@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	data-th-replace="~{layouts/layout :: layout-filmotheque(
+      data-th-replace="~{layouts/layout :: layout-filmotheque(
 			titrePage=~{:: title}, 
 			contenuPage=~{:: main}, 
 			ressource=~{:: #css})}">
 <head>
-<title>Contextes</title>
-<th:block id="css">
-	<link rel="stylesheet" data-th-href="@{/css/tp-contexte.css}">
-</th:block>
+    <title>Contextes</title>
+    <th:block id="css">
+        <link rel="stylesheet" data-th-href="@{/css/tp-contexte.css}">
+    </th:block>
 
 </head>
 <body>
 
-	<main>
-		<h1>Contextes</h1>
-		<th:block data-th-if="${loggedMembre == null || loggedMembre.id == 0}">
-			<form action="/membres/session" method="post">
-				<input type="hidden" name="email" value="jtrillard@campus-eni.fr">
-				<button type="submit" class="link-button">Julien</button>
-			</form>
+<main>
+    <h1>Contextes</h1>
+    <th:block data-th-if="${loggedMembre == null || loggedMembre.id == 0}">
+        <form action="/membres/session" method="post">
+            <input type="hidden" name="email" value="jtrillard@campus-eni.fr">
+            <button type="submit" class="link-button">Julien</button>
+        </form>
 
-			<form action="/membres/session" method="post">
-				<input type="hidden" name="email" value="abaille@campus-eni.fr">
-				<button type="submit" class="link-button">Anne-Lise</button>
-			</form>
+        <form action="/membres/session" method="post">
+            <input type="hidden" name="email" value="abaille@campus-eni.fr">
+            <button type="submit" class="link-button">Anne-Lise</button>
+        </form>
 
-			<form action="/membres/session" method="post">
-				<input type="hidden" name="email" value="sgobin@campus-eni.fr">
-				<button type="submit" class="link-button">Stéphane [Admin]</button>
-			</form>
-		</th:block>
-		
-		<th:block data-th-if="${loggedMembre != null && loggedMembre.id > 0}">
-			<a href="/membres/logout">Déconnexion</a>
-		</th:block>
-	</main>
+        <form action="/membres/session" method="post">
+            <input type="hidden" name="email" value="sgobin@campus-eni.fr">
+            <button type="submit" class="link-button">Stéphane [Admin]</button>
+        </form>
+    </th:block>
+
+    <th:block data-th-if="${loggedMembre != null && loggedMembre.id > 0}">
+        <a href="/membres/logout">Déconnexion</a>
+    </th:block>
+</main>
 
 </body>
 </html>

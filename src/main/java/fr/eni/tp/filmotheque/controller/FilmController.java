@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/films")
-@SessionAttributes({"loggedMembre" })
+@SessionAttributes({"loggedMembre"})
 public class FilmController {
     private final FilmService filmService;
 
@@ -99,7 +99,7 @@ public class FilmController {
     public String creerFilm(@ModelAttribute("loggedMembre") Optional<Membre> loggedMembre,
                             @Valid @ModelAttribute("film") Film film,
                             BindingResult bindingResult
-                            ) {
+    ) {
         if (loggedMembre.isPresent() && loggedMembre.get().getId() >= 1) {
             if (bindingResult.hasErrors()) {
                 return "creation";
